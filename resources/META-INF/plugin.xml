@@ -1,11 +1,10 @@
 <idea-plugin>
     <id>tsi.test_status_icon</id>
-    <name>Plugin display name here</name>
+    <name>TestStatusIcon</name>
     <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    Shows the test result status as icon in the status bar.
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -16,6 +15,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <statusBarWidgetProvider implementation="tsi.StatusBarIconProvider"/>
     </extensions>
 
     <actions>
