@@ -16,9 +16,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <statusBarWidgetProvider implementation="tsi.StatusBarIconProvider"/>
+        <applicationService serviceImplementation="tsi.TestStateService"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
     </actions>
+
+    <applicationListeners>
+        <listener class="tsi.TsiStatusBar" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </applicationListeners>
+
+    <projectListeners>
+        <listener class="tsi.TsiStatusBar" topic="com.intellij.execution.testframework.sm.runner.SMTRunnerEventsListener"/>
+    </projectListeners>
 </idea-plugin>
