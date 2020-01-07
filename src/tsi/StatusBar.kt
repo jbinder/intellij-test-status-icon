@@ -47,6 +47,8 @@ object TsiStatusBar : StatusBarWidget, StatusBarWidget.IconPresentation, SMTRunn
     // nothing to be done
   }
 
+  override fun getPresentation(type: StatusBarWidget.PlatformType): StatusBarWidget.WidgetPresentation? = this
+
   override fun onTestingFinished(testsRoot: SMTestProxy.SMRootTestProxy) {
     if (testsRoot.isPassed) {
       testStateService.set(TestState.Success)
