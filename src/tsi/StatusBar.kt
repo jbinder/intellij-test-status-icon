@@ -28,6 +28,7 @@ object TsiStatusBar : StatusBarWidget, StatusBarWidget.IconPresentation, SMTRunn
     TestState.Success to TsiIcons.ICON_GREEN,
     TestState.Failure to TsiIcons.ICON_RED
   )
+  private var excludePaths: List<String> = listOf("/.idea/")
   private var statusBar: StatusBar? = null
   private var testStateService: TestStateService = ServiceManager.getService(TestStateService::class.java)
 
@@ -79,6 +80,9 @@ object TsiStatusBar : StatusBarWidget, StatusBarWidget.IconPresentation, SMTRunn
 
   override fun after(events: MutableList<out VFileEvent>) {
     super.after(events)
+    if (events.filter { x -> excludePaths.any { y -> x.path.contains(y, true) } }.any()) {
+      return
+    }
     testStateService.set(TestState.Unknown)
     updateIcon()
   }

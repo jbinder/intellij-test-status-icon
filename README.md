@@ -15,15 +15,18 @@ Usage
 
 The plugin shows the status of the last test run, so it is most useful when used with running tests automatically.
 
+To enable auto-test:
+
+* Run all unit tests
+* In the 'Run' window, click the 'Toggle'
+
 ### IntelliJ
 
+This will run the tests on build, see [2] for further information.
 
 ### PyCharm
 
-* Run a unit test
-* In the 'Run' window, click the 'Toggle auto-test' icon
-
-See [1] for further information.
+This will run the tests every x seconds (see Run Settings / Set Auto Test Delay), see [1] for further information.
 
 Resources
 ---------
@@ -36,3 +39,5 @@ References
 ----------
 
 [1] https://www.jetbrains.com/help/pycharm/testing-your-first-python-application.html#run-test-automatically
+
+[2] https://www.jetbrains.com/help/idea/monitoring-and-managing-tests.html
