@@ -27,6 +27,7 @@ This will run the tests on build, see [2] for further information.
 ### PyCharm
 
 This will run the tests every x seconds (see Run Settings / Set Auto Test Delay), see [1] for further information.
+To execute all tests in Python, e.g. [nosetests](https://nose.readthedocs.io/en/latest/) can be used.
 
 Resources
 ---------

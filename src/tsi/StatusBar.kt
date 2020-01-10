@@ -28,6 +28,11 @@ object TsiStatusBar : StatusBarWidget, StatusBarWidget.IconPresentation, SMTRunn
     TestState.Success to TsiIcons.ICON_GREEN,
     TestState.Failure to TsiIcons.ICON_RED
   )
+  private var stateToTooltipText: Map<TestState, String> = mapOf(
+    TestState.Unknown to "Test status: Unknown",
+    TestState.Success to "Test status: Success",
+    TestState.Failure to "Test status: Failure"
+  )
   private var excludePaths: List<String> = listOf("/.idea/")
   private var statusBar: StatusBar? = null
   private var testStateService: TestStateService = ServiceManager.getService(TestStateService::class.java)
@@ -40,7 +45,7 @@ object TsiStatusBar : StatusBarWidget, StatusBarWidget.IconPresentation, SMTRunn
 
   override fun dispose() {}
 
-  override fun getTooltipText() = "TestStatusIcon"
+  override fun getTooltipText() = stateToTooltipText.getValue(testStateService.get())
 
   override fun getIcon(): Icon = stateToIconMapping.getValue(testStateService.get())
 
