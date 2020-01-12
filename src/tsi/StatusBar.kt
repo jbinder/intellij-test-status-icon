@@ -34,6 +34,7 @@ object TsiStatusBar : StatusBarWidget, StatusBarWidget.IconPresentation, SMTRunn
     TestState.Failure to "Test status: Failure"
   )
   private var excludePaths: List<String> = listOf("/.idea/")
+
   private var statusBar: StatusBar? = null
   private var testStateService: TestStateService = ServiceManager.getService(TestStateService::class.java)
 
@@ -88,13 +89,17 @@ object TsiStatusBar : StatusBarWidget, StatusBarWidget.IconPresentation, SMTRunn
     if (events.filter { x -> excludePaths.any { y -> x.path.contains(y, true) } }.any()) {
       return
     }
+
+    notify(events.joinToString { x -> x.toString() })
     testStateService.set(TestState.Unknown)
     updateIcon()
   }
 
   private fun updateIcon() {
     statusBar?.updateWidget(ID())
-    notify(testStateService.get().name)
+    if (testStateService.hasChanged()) {
+      notify(testStateService.get().name)
+    }
   }
 
   private fun notify(content: String) {
